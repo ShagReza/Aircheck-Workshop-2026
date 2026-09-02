@@ -6,9 +6,27 @@ Materials for the Aircheck Workshop 2026.
 
 - `notebooks/` contains the workshop notebooks.
 - `src/` contains reusable Python code.
-- `data/` contains small, non-sensitive example data. Large datasets should remain in cloud storage.
+- `data/` contains the workshop datasets (see below). Full datasets remain in cloud storage.
 - `results/` contains generated outputs and model artifacts.
 - `requirements.txt` lists the Python dependencies used by the notebooks.
+
+## Workshop data
+
+The notebooks read these files from `data/`. They are committed to the repository so every
+participant starts from identical data, in Colab and locally alike.
+
+| File | Compounds | Label | SMILES | What it is |
+|---|---|---|---|---|
+| `sample-train.parquet` | 4,000 | yes, balanced 50/50 | no | DEL screen against WDR91. Training set. |
+| `sample-test.parquet` | 2,000 | yes, balanced 50/50 | no | Held-out slice of the DEL screen. Quick sanity check. |
+| `sample-test-2.parquet` | 5,000 | yes, 9 actives (0.18%) | yes | Realistic evaluation set. |
+| `sample-screen.parquet` | 5,000 | no | yes | Compounds to screen and nominate. |
+
+Every fingerprint column (`ECFP4`, `ECFP6`, `FCFP4`, `FCFP6`, `MACCS`, `RDK`, `AVALON`,
+`ATOMPAIR`, `TOPTOR`) is stored as an **array of counts**, so reading a column gives NumPy
+arrays directly - there are no comma-separated strings to parse.
+
+The full AIRCHECK datasets are available from https://www.aircheck.ai/datasets
 
 ## Local setup
 
@@ -51,9 +69,15 @@ need a GitHub account.
 - **From inside Colab.** `File -> Open notebook -> GitHub`, then enter
   `ShagReza/Aircheck-Workshop-2026` and pick a notebook from the list.
 
-## Running the notebooks against the full datasets
+## How the notebooks find their data
 
-Clone the repository into the Colab runtime, change into the repository directory, install
-`requirements.txt`, and open a notebook from `notebooks/`. Small example data committed
-under `data/` is available automatically; full datasets can be loaded from GCP or Azure
-storage without changing the analysis workflow.
+The two hands-on notebooks open with a bootstrap cell that works in both environments:
+
+- **In Colab** it clones this repository into the runtime, then installs everything in
+  `requirements.txt`.
+- **Locally** it walks up from the notebook to find the repository root and installs
+  nothing, assuming you already set up a virtual environment.
+
+Either way the notebook ends up with `REPO_ROOT`, `DATA_DIR` and `RESULTS_DIR`, and every
+later cell uses those instead of absolute paths. Models and outputs are written to
+`results/`, which is gitignored.

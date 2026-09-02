@@ -26,3 +26,7 @@ results/*
 .env
 .env.*
 !.env.example
+# Artifacts the notebooks write when they are run.
+notebooks/*.joblib
+notebooks/*.pkl
+notebooks/*.mol

@@ -11,3 +11,4 @@ lightgbm
 umap-learn
 google-auth
 google-cloud-storage
+openpyxl

@@ -30,3 +30,5 @@ results/*
 notebooks/*.joblib
 notebooks/*.pkl
 notebooks/*.mol
+notebooks/*.csv
+notebooks/*.xlsx

@@ -33,3 +33,4 @@ notebooks/*.mol
 notebooks/*.csv
 notebooks/*.xlsx
 notebooks/*.png
+notebooks/*.metadata.json

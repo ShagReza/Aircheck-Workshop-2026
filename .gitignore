@@ -34,3 +34,6 @@ notebooks/*.csv
 notebooks/*.xlsx
 notebooks/*.png
 notebooks/*.metadata.json
+
+# Activity answer key - kept local, not for participants.
+activity-solution.ipynb

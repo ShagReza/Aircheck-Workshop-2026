@@ -1,49 +1,48 @@
 # Aircheck Workshop 2026
 
-Materials for the Aircheck Workshop 2026.
+Materials for the Aircheck Workshop 2026: teaching notebooks, sample data, and the hackathon
+leaderboard.
 
 ## Repository layout
 
-- `notebooks/` contains the workshop notebooks.
-- `src/` contains reusable Python code.
-- `data/` contains the workshop datasets (see below). Full datasets remain in cloud storage.
-- `team-results/` holds the team submissions, plus ten samples for testing the scorer.
-- `results/` is created when a notebook runs, and holds generated models and leaderboards.
-- `requirements.txt` lists the Python dependencies used by the notebooks.
+| Folder | What is in it |
+|---|---|
+| `notebooks/` | the workshop notebooks — two introductions, two hands-on, and the organisers' leaderboard |
+| `data/` | the sample datasets the notebooks read |
+| `src/` | helper modules the notebooks import: `metrics`, `plots`, `features` |
+| `team-results/` | team submissions, plus ten samples for testing the scorer |
+| `results/` | generated output — trained models and leaderboard files. Created when a notebook runs; contents are gitignored |
+| `requirements.txt` | Python dependencies |
 
-## Workshop data
+## Workshop sample data
 
-The notebooks read these files from `data/`. They are committed to the repository so every
-participant starts from identical data, in Colab and locally alike.
+Small samples, committed to the repository so every participant starts from identical data,
+in Colab and locally alike.
 
 | File | Compounds | Label | SMILES | What it is |
 |---|---|---|---|---|
 | `sample-train.parquet` | 4,000 | yes, balanced 50/50 | no | DEL screen against WDR91. Training set. |
-| `sample-test.parquet` | 5,000 | yes, 9 actives (0.18%) | yes | Realistic evaluation set. |
-| `sample-screen.parquet` | 5,000 | no | yes | Compounds to screen and nominate. |
+| `sample-test.parquet` | 5,000 | yes, 9 actives (0.18%) | yes | Test set, and the library that gets screened. |
+| `sample-screen.parquet` | 5,000 | no | yes | Unlabelled compounds to screen and nominate. |
 
 Every fingerprint column (`ECFP4`, `ECFP6`, `FCFP4`, `FCFP6`, `MACCS`, `RDK`, `AVALON`,
 `ATOMPAIR`, `TOPTOR`) is stored as an **array of counts**, so reading a column gives NumPy
-arrays directly - there are no comma-separated strings to parse.
+arrays directly — there are no comma-separated strings to parse.
+
+## Main workshop data
+
+*To be added.*
+
+<!-- The full dataset used on the day. Fill in: file names and sizes, how many compounds and
+     actives, where they live, and what the notebooks should point at instead of the samples
+     above. -->
 
 The full AIRCHECK datasets are available from https://www.aircheck.ai/datasets
 
-## Local setup
-
-Create and activate a virtual environment, then install the dependencies:
-
-```bash
-python -m venv .venv
-python -m pip install -r requirements.txt
-```
-
-Open the notebooks in VS Code with the Jupyter extension. Keep file paths relative to the repository so the notebooks can also be cloned into a Colab runtime later.
-
 ## Open in Colab
 
-The notebooks run in Google Colab with no setup — click a link below and Colab opens the
-notebook straight from this repository. The repository is public, so participants do not
-need a GitHub account.
+Click a link and Colab opens the notebook straight from this repository. No GitHub account
+needed — the repository is public.
 
 | Notebook | Open |
 |---|---|
@@ -52,32 +51,29 @@ need a GitHub account.
 | Hands-On: Data Exploration | [Open in Colab](https://colab.research.google.com/github/ShagReza/Aircheck-Workshop-2026/blob/main/notebooks/HandsOn-DataExploration-AircheckWorkshop2026.ipynb) |
 | Hands-On: Machine Learning | [Open in Colab](https://colab.research.google.com/github/ShagReza/Aircheck-Workshop-2026/blob/main/notebooks/HandsOn-MachineLearning-AircheckWorkshop2026.ipynb) |
 
-### Notes for participants
+`Evaluation-Leaderboard` is for organisers — it reads the gold labels, so it is not listed
+above.
 
-- Colab opens a **copy** of the notebook. Your edits are not saved back to this repository.
-  To keep your work, use `File -> Save a copy in Drive` before you start editing.
-- If the notebook is updated during the workshop, re-open the link above to get the new
-  version. Your saved Drive copy will not update on its own.
-- Colab provides `pandas`, `numpy` and `scikit-learn` by default; the hands-on notebooks install the
-  remaining packages (`rdkit`, `lightgbm`, `umap-learn`) in their first cell.
+**Notes for participants**
 
-### Other ways to open a notebook in Colab
+- Colab opens a **copy**. Use `File → Save a copy in Drive` before editing to keep your work.
+- If a notebook is updated during the workshop, re-open the link to get the new version; your
+  Drive copy will not update on its own.
+- The hands-on notebooks install what Colab is missing (`rdkit`, `lightgbm`, `umap-learn`) in
+  their first cell.
 
-- **Rewrite the URL.** Any notebook in a public GitHub repository can be opened by putting
-  `colab.research.google.com/github/` in front of the `owner/repo/blob/...` part of its
-  GitHub URL.
-- **From inside Colab.** `File -> Open notebook -> GitHub`, then enter
-  `ShagReza/Aircheck-Workshop-2026` and pick a notebook from the list.
+## Local setup
+
+```bash
+python -m venv .venv
+python -m pip install -r requirements.txt
+```
+
+Then open the notebooks in VS Code with the Jupyter extension.
 
 ## How the notebooks find their data
 
-The two hands-on notebooks open with a bootstrap cell that works in both environments:
-
-- **In Colab** it clones this repository into the runtime, then installs everything in
-  `requirements.txt`.
-- **Locally** it walks up from the notebook to find the repository root and installs
-  nothing, assuming you already set up a virtual environment.
-
-Either way the notebook ends up with `REPO_ROOT`, `DATA_DIR` and `RESULTS_DIR`, and every
-later cell uses those instead of absolute paths. Models and outputs are written to
-`results/`, which is gitignored.
+Each hands-on notebook opens with a bootstrap cell that works in both places. In Colab it
+clones this repository and installs `requirements.txt`; locally it walks up to find the
+repository root and installs nothing. Either way you end up with `REPO_ROOT`, `DATA_DIR` and
+`RESULTS_DIR`, and every later cell uses those rather than absolute paths.

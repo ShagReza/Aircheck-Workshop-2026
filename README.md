@@ -18,8 +18,7 @@ participant starts from identical data, in Colab and locally alike.
 | File | Compounds | Label | SMILES | What it is |
 |---|---|---|---|---|
 | `sample-train.parquet` | 4,000 | yes, balanced 50/50 | no | DEL screen against WDR91. Training set. |
-| `sample-test.parquet` | 2,000 | yes, balanced 50/50 | no | Held-out slice of the DEL screen. Quick sanity check. |
-| `sample-test-2.parquet` | 5,000 | yes, 9 actives (0.18%) | yes | Realistic evaluation set. |
+| `sample-test.parquet` | 5,000 | yes, 9 actives (0.18%) | yes | Realistic evaluation set. |
 | `sample-screen.parquet` | 5,000 | no | yes | Compounds to screen and nominate. |
 
 Every fingerprint column (`ECFP4`, `ECFP6`, `FCFP4`, `FCFP6`, `MACCS`, `RDK`, `AVALON`,

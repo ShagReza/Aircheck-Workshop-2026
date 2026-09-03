@@ -32,3 +32,4 @@ notebooks/*.pkl
 notebooks/*.mol
 notebooks/*.csv
 notebooks/*.xlsx
+notebooks/*.png

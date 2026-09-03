@@ -7,7 +7,8 @@ Materials for the Aircheck Workshop 2026.
 - `notebooks/` contains the workshop notebooks.
 - `src/` contains reusable Python code.
 - `data/` contains the workshop datasets (see below). Full datasets remain in cloud storage.
-- `results/` contains generated outputs and model artifacts.
+- `team-results/` holds the team submissions, plus ten samples for testing the scorer.
+- `results/` is created when a notebook runs, and holds generated models and leaderboards.
 - `requirements.txt` lists the Python dependencies used by the notebooks.
 
 ## Workshop data

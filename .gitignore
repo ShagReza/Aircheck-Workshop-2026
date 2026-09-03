@@ -37,3 +37,6 @@ notebooks/*.metadata.json
 
 # Activity answer key - kept local, not for participants.
 activity-solution.ipynb
+
+# Last year's evaluation notebooks, kept for reference only.
+temp/

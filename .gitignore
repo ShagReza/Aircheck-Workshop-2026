@@ -40,3 +40,11 @@ activity-solution.ipynb
 
 # Last year's evaluation notebooks, kept for reference only.
 temp/
+
+# Artifacts a notebook writes into the repository root when run from here.
+/*.joblib
+/*.pkl
+/*.mol
+/*.csv
+/*.png
+/*.metadata.json

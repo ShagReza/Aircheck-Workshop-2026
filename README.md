@@ -73,7 +73,11 @@ Then open the notebooks in VS Code with the Jupyter extension.
 
 ## How the notebooks find their data
 
-Each hands-on notebook opens with a bootstrap cell that works in both places. In Colab it
-clones this repository and installs `requirements.txt`; locally it walks up to find the
-repository root and installs nothing. Either way you end up with `REPO_ROOT`, `DATA_DIR` and
-`RESULTS_DIR`, and every later cell uses those rather than absolute paths.
+Each hands-on notebook opens with a bootstrap cell that works in Colab, on Databricks and
+locally. It looks for the repository on disk first — a local clone or a Databricks Git folder
+is found there — and clones it only if it is missing, which is what happens in Colab. The
+next cell installs `requirements.txt` in Colab and Databricks, and assumes a prepared virtual
+environment locally.
+
+Either way you end up with `REPO_ROOT`, `DATA_DIR` and `RESULTS_DIR`, and every later cell
+uses those rather than absolute paths.
